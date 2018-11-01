@@ -60,6 +60,8 @@ namespace Rover.Api.Tests
         [InlineData(0, 0, 'W', 'F', -1, 0, 'W')]
         [InlineData(0, 0, 'W', 'B', 1, 0, 'W')]
         [InlineData(0, 100, 'N', 'F', 0, 0, 'N')]
+        [InlineData(100, 0, 'E', 'F', 0, 0, 'E')]
+        [InlineData(0, 0, 'N', 'B', 0, 100, 'N')]
         public void Should_MoveInCorrectDirection(int beginX, int beginY, char beginDirection, char command,
             int expectedX, int expectedY, char expectedDirection)
         {

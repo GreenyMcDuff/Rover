@@ -9,3 +9,4 @@
 ### Class: Coordinates
 
 - The properties here have public setters, this could be removed if we implemented methods to modify them
+  - Don't like the way I've implemented the min and max grid sizes in this class.  Makes it easy to break the unit tests, but started running out time.  Will look at this again if the obstacle detection goes well :)
