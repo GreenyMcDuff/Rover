@@ -8,6 +8,13 @@ namespace Rover.Api.Tests
     {
         [Theory]
         [InlineData(0, 0, 'N', 'R', 0, 0, 'E')]
+        [InlineData(0, 0, 'E', 'R', 0, 0, 'S')]
+        [InlineData(0, 0, 'S', 'R', 0, 0, 'W')]
+        [InlineData(0, 0, 'W', 'R', 0, 0, 'N')]
+        [InlineData(0, 0, 'N', 'L', 0, 0, 'W')]
+        [InlineData(0, 0, 'E', 'L', 0, 0, 'N')]
+        [InlineData(0, 0, 'S', 'L', 0, 0, 'E')]
+        [InlineData(0, 0, 'W', 'L', 0, 0, 'S')]
         public void Should_RotateAndFaceNewDirection(int beginX, int beginY, char beginDirection, char command,
             int expectedX, int expectedY, char expectedDirection)
         {
