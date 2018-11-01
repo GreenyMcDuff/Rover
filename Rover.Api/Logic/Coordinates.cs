@@ -35,12 +35,32 @@ namespace Rover.Api.Logic
 
         private int WrapX(int x)
         {
-            return x > MaxX ? 0 : x;
+            if (x > MaxX)
+            {
+                return 0;
+            }
+
+            if (x == -1)
+            {
+                return MaxX;
+            }
+
+            return x;
         }
 
         private int WrapY(int y)
         {
-            return y > MaxY ? 0 : y;
+            if (y > MaxY)
+            {
+                return 0;
+            }
+
+            if (y == -1)
+            {
+                return MaxY;
+            }
+
+            return y;
         }
     }
 }
