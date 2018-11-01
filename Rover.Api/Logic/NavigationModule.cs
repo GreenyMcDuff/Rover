@@ -7,12 +7,16 @@ namespace Rover.Api.Logic
 {
     public class NavigationModule
     {
-        public NavigationModule()
+        private readonly char[] _commands;
+
+        public NavigationModule(string commandString)
         {
-            // probably need to take in the command string here
+            _commands = commandString.ToCharArray();
         }
 
-        public Coordinates CurrentPosition { get; set; }
+        public ImmovableObstacle ImmovableObstacle { get; set; }
+        public Coordinates CurrentPosition { get; set; } = new Coordinates(0, 0, 'N');
+        public string Message { get; set; }
 
         public void Move(Coordinates startPosition, char command)
         {
@@ -130,6 +134,40 @@ namespace Rover.Api.Logic
                 CurrentPosition = startPosition;
                 return;
             }
+        }
+
+        public bool ImmovableObstacleFound(Coordinates startPosition, char command)
+        {
+            var proposedPosition = Move(startPosition, command);
+
+            if (ImmovableObstacle.Position.X == CurrentPosition.X && ImmovableObstacle.Position.Y == CurrentPosition.Y)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool ExecuteCommand()
+        {
+            foreach (var command in _commands)
+            {
+                if (command.Equals('R') || command.Equals('L'))
+                {
+                    Rotate(CurrentPosition, command);
+                }
+                else
+                {
+                    if (ImmovableObstacleFound())
+                    {
+                        Message = "I found an obstacle, stoping command early";
+                        return false;
+                    }
+                    Move(CurrentPosition, command);
+                }
+            }
+            Message = "No obstacles found during command execution";
+            return true;
         }
     }
 }

@@ -7,6 +7,28 @@ namespace Rover.Api.Tests
     public class NavigationModuleTests
     {
         [Theory]
+        [InlineData(0, 0, 'N', "FF", 0, 1, 'N')]
+        public void Should_DetecObstaclesAndStopMoving(int beginX, int beginY, char beginDirection, string command,
+            int expectedX, int expectedY, char expectedDirection)
+        {
+            // assemble
+            var startCoordinates = new Coordinates(beginX, beginY, beginDirection);
+            var navigationModule = new NavigationModule(command);
+            navigationModule.ImmovableObstacle = new ImmovableObstacle(0, 2);
+
+            // act
+            var result = navigationModule.ExecuteCommand();
+
+            // assert
+            Assert.Equal(expectedX, navigationModule.CurrentPosition.X);
+            Assert.Equal(expectedY, navigationModule.CurrentPosition.Y);
+            Assert.Equal(expectedDirection, navigationModule.CurrentPosition.Direction);
+            Assert.False(result);
+            Assert.Equal("I found an obstacle, stoping command early", navigationModule.Message);
+
+        }
+
+        [Theory]
         [InlineData(0, 0, 'N', 'R', 0, 0, 'E')]
         [InlineData(0, 0, 'E', 'R', 0, 0, 'S')]
         [InlineData(0, 0, 'S', 'R', 0, 0, 'W')]
@@ -20,7 +42,7 @@ namespace Rover.Api.Tests
         {
             // assemble
             var startCoordinates = new Coordinates(beginX, beginY, beginDirection);
-            var navigationModule = new NavigationModule();
+            var navigationModule = new NavigationModule(command.ToString());
 
             // act
             navigationModule.Rotate(startCoordinates, command);
@@ -50,7 +72,7 @@ namespace Rover.Api.Tests
         {
             // assemble
             var startCoordinates = new Coordinates(beginX, beginY, beginDirection);
-            var navigationModule = new NavigationModule();
+            var navigationModule = new NavigationModule(command.ToString());
 
             // act
             navigationModule.Move(startCoordinates, command);
