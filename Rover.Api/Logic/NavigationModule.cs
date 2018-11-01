@@ -20,48 +20,56 @@ namespace Rover.Api.Logic
             {
                 startPosition.Y++;
                 CurrentPosition = startPosition;
+                return;
             }
 
             if (startPosition.Direction == 'N' && command == 'B')
             {
                 startPosition.Y--;
                 CurrentPosition = startPosition;
+                return;
             }
 
             if (startPosition.Direction == 'E' && command == 'F')
             {
                 startPosition.X++;
                 CurrentPosition = startPosition;
+                return;
             }
 
             if (startPosition.Direction == 'E' && command == 'B')
             {
                 startPosition.X--;
                 CurrentPosition = startPosition;
+                return;
             }
 
             if (startPosition.Direction == 'S' && command == 'F')
             {
                 startPosition.Y--;
                 CurrentPosition = startPosition;
+                return;
             }
 
             if (startPosition.Direction == 'S' && command == 'B')
             {
                 startPosition.Y++;
                 CurrentPosition = startPosition;
+                return;
             }
 
             if (startPosition.Direction == 'W' && command == 'F')
             {
                 startPosition.X--;
                 CurrentPosition = startPosition;
+                return;
             }
 
             if (startPosition.Direction == 'W' && command == 'B')
             {
                 startPosition.X++;
                 CurrentPosition = startPosition;
+                return;
             }
         }
 
@@ -71,6 +79,56 @@ namespace Rover.Api.Logic
             {
                 startPosition.Direction = 'E';
                 CurrentPosition = startPosition;
+                return;
+            }
+
+            if (startPosition.Direction == 'E' && command == 'R')
+            {
+                startPosition.Direction = 'S';
+                CurrentPosition = startPosition;
+                return;
+            }
+
+            if (startPosition.Direction == 'S' && command == 'R')
+            {
+                startPosition.Direction = 'W';
+                CurrentPosition = startPosition;
+                return;
+            }
+
+            if (startPosition.Direction == 'W' && command == 'R')
+            {
+                startPosition.Direction = 'N';
+                CurrentPosition = startPosition;
+                return;
+            }
+
+            if (startPosition.Direction == 'N' && command == 'L')
+            {
+                startPosition.Direction = 'W';
+                CurrentPosition = startPosition;
+                return;
+            }
+
+            if (startPosition.Direction == 'E' && command == 'L')
+            {
+                startPosition.Direction = 'N';
+                CurrentPosition = startPosition;
+                return;
+            }
+
+            if (startPosition.Direction == 'S' && command == 'L')
+            {
+                startPosition.Direction = 'E';
+                CurrentPosition = startPosition;
+                return;
+            }
+
+            if (startPosition.Direction == 'W' && command == 'L')
+            {
+                startPosition.Direction = 'S';
+                CurrentPosition = startPosition;
+                return;
             }
         }
     }
