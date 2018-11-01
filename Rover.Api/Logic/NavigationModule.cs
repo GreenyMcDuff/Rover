@@ -14,9 +14,13 @@ namespace Rover.Api.Logic
 
         public Coordinates CurrentPosition { get; set; }
 
-        public void Move(Coordinates startingPosition, char command)
+        public void Move(Coordinates startPosition, char command)
         {
-
+            if (startPosition.Direction == 'N' && command == 'F')
+            {
+                startPosition.Y++;
+                CurrentPosition = startPosition;
+            }
         }
     }
 }
