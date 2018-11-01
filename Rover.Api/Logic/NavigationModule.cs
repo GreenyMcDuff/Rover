@@ -67,7 +67,11 @@ namespace Rover.Api.Logic
 
         public void Rotate(Coordinates startPosition, char command)
         {
-            // TODO ..
+            if (startPosition.Direction == 'N' && command == 'R')
+            {
+                startPosition.Direction = 'E';
+                CurrentPosition = startPosition;
+            }
         }
     }
 }
