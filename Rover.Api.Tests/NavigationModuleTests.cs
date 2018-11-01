@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Rover.Api.Logic;
+using Xunit;
 
 namespace Rover.Api.Tests
 {
@@ -6,19 +7,21 @@ namespace Rover.Api.Tests
     public class NavigationModuleTests
     {
         [Theory]
-        [InlineData(0, 0, "N", "F", 0, 1, "")]
-        public void Should_MoveInCorrectDirection(int beginX, int beginY, string beginDirection, string command,
-            int expectedX, int expectedY, string expectedDirection)
+        [InlineData(0, 0, 'N', 'F', 0, 1, 'N')]
+        public void Should_MoveInCorrectDirection(int beginX, int beginY, char beginDirection, char command,
+            int expectedX, int expectedY, char expectedDirection)
         {
             // need something to hold coordinates
+            var startCoordinates = new Coordinates(beginX, beginY, beginDirection);
+
 
             // need something to do the doing of the command
             var navigationModule = new NavigationModule();
-            navigationModule.Move(coordinates);
-            var actual = navigationModule.CurrentLocation;
+            navigationModule.Move(startCoordinates, command);
+            var actual = navigationModule.CurrentPosition;
 
-            Assert.Equal(expectedX, actual.XCoordinate);
-            Assert.Equal(expectedY, actual.YCoordinate);
+            Assert.Equal(expectedX, actual.X);
+            Assert.Equal(expectedY, actual.Y);
             Assert.Equal(expectedDirection, actual.Direction);
         }
     }
