@@ -21,6 +21,48 @@ namespace Rover.Api.Logic
                 startPosition.Y++;
                 CurrentPosition = startPosition;
             }
+
+            if (startPosition.Direction == 'N' && command == 'B')
+            {
+                startPosition.Y--;
+                CurrentPosition = startPosition;
+            }
+
+            if (startPosition.Direction == 'E' && command == 'F')
+            {
+                startPosition.X++;
+                CurrentPosition = startPosition;
+            }
+
+            if (startPosition.Direction == 'E' && command == 'B')
+            {
+                startPosition.X--;
+                CurrentPosition = startPosition;
+            }
+
+            if (startPosition.Direction == 'S' && command == 'F')
+            {
+                startPosition.Y--;
+                CurrentPosition = startPosition;
+            }
+
+            if (startPosition.Direction == 'S' && command == 'B')
+            {
+                startPosition.Y++;
+                CurrentPosition = startPosition;
+            }
+
+            if (startPosition.Direction == 'W' && command == 'F')
+            {
+                startPosition.X--;
+                CurrentPosition = startPosition;
+            }
+
+            if (startPosition.Direction == 'W' && command == 'B')
+            {
+                startPosition.X++;
+                CurrentPosition = startPosition;
+            }
         }
     }
 }
