@@ -64,5 +64,10 @@ namespace Rover.Api.Logic
                 CurrentPosition = startPosition;
             }
         }
+
+        public void Rotate(Coordinates startPosition, char command)
+        {
+            // TODO ..
+        }
     }
 }
